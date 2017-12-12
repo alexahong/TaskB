@@ -9,8 +9,8 @@ void countChar(char* pName);
 
 int main(){
   char* pName;
-
-  cout<<"Enter the file name";
+// enter in file name to be able to count lines and characters
+  cout<<"Enter the file name: ";
   cin>>pName;
 
     countLine(pName);
@@ -19,35 +19,38 @@ int main(){
   return 0;
 }
 
-void countChar(char* pName){
-  int num_char; 
-  char characters;
+void countChar(char* pName)
+{
+  int num_char = 0; //number of characters
+  string line_char;
 
   ifstream myfile(pName);
   
-  if(myfile.is_open()){
-    while(!myfile.eof()){
-
-
-      characters = cin.get();
-
-      if(characters != '\n')
-        num_char++;
+  if(myfile.is_open())
+  {
+    while(!myfile.eof())
+    {
+      getline(myfile, line_char);
+      num_char+=line_char.length();
     }
+    
   }
-  cout<<"There are: " << num_char<<" total characters"<<endl;
+  cout<<"There are: "<< num_char<<" Characters\n";
 }
 
-void countLine(char* pName){
+void countLine(char* pName)
+{
 
   int num_lines; 
   string str_line;
 
   ifstream myfile(pName);
 
-  if(myfile.is_open()){
+  if(myfile.is_open())
+  {
 
-    while(!myfile.eof()){
+    while(!myfile.eof())
+    {
       getline(myfile, str_line);
       num_lines++;
     }
