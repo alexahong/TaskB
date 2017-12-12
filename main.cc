@@ -1,36 +1,57 @@
-#include <iostream>
+#include<iostream>
+#include<fstream>
 #include <cstdlib>
+
 using namespace std;
 
-int countLine(char* pName);
-void countChar(char* Pname );
-
+void countLine(char* pName);
+void countChar(char* pName);
 
 int main(){
+  char* pName;
 
-  cout << countlines(); 
-}
+  cout<<"Enter the file name";
+  cin>>pName;
 
+    countLine(pName);
+    countChar(pName);
 
-int countLine(char* pName){
-FILE *fp = fopen(pName,"r");
-  int ch=0;
-  int lines=0;
-
-  if (fp == NULL);
   return 0;
-
-  lines++;
-  while (!feof(fp))
-    {
-      ch = fgetc(fp);
-      if (ch == '\n')
-    lines++;
-    }
-  fclose(fp);
-  return lines;
 }
 
 void countChar(char* pName){
-  cout << "\n" << lcount << "Characters"; 
+  int num_char; 
+  char characters;
+
+  ifstream myfile(pName);
+  
+  if(myfile.is_open()){
+    while(!myfile.eof()){
+
+
+      characters = cin.get();
+
+      if(characters != '\n')
+        num_char++;
+    }
+  }
+  cout<<"There are: " << num_char<<" total characters"<<endl;
 }
+
+void countLine(char* pName){
+
+  int num_lines; 
+  string str_line;
+
+  ifstream myfile(pName);
+
+  if(myfile.is_open()){
+
+    while(!myfile.eof()){
+      getline(myfile, str_line);
+      num_lines++;
+    }
+  }
+  cout<<"There are: "<< num_lines<< " Lines"<<endl;
+}
+
