@@ -1,5 +1,12 @@
-#include<iostream>
-#include<fstream>
+
+/**
+* @brief this program will read in text file and display the number
+* of characters and lines.
+*
+*
+*/
+#include <iostream>
+#include <fstream>
 #include <cstdlib>
 
 using namespace std;
@@ -13,6 +20,7 @@ int main(){
   cout<<"Enter the file name: ";
   cin>>pName;
 
+  
     countLine(pName);
     countChar(pName);
 
@@ -24,13 +32,19 @@ void countChar(char* pName)
   int num_char = 0; //number of characters
   string line_char;
 
+  // reads in file 
   ifstream myfile(pName);
   
+  // if file exists then it will read
   if(myfile.is_open())
   {
     while(!myfile.eof())
     {
+      // reads in string from file until the end
+
       getline(myfile, line_char);
+
+      // increments the length of each character found
       num_char+=line_char.length();
     }
     
@@ -44,14 +58,20 @@ void countLine(char* pName)
   int num_lines; 
   string str_line;
 
+  // reads in file of characters
   ifstream myfile(pName);
 
+
+  // if file exists
   if(myfile.is_open())
   {
 
+    // opens file and reads in 
     while(!myfile.eof())
     {
       getline(myfile, str_line);
+
+      // increments each line of string
       num_lines++;
     }
   }
